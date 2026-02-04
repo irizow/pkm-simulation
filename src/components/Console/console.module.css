@@ -1,3 +1,58 @@
 .console {
-  border: 1px solid red;
+  background-color: var(--shell-color);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-radius: 20% 20% 100px 100px;
+  border: 1px solid gray;
+}
+
+.handle {
+  width: calc(var(--shell-height) / 2);
+  position: relative;
+}
+
+.screen {
+  padding: calc(var(--shell-height) / 10);
+}
+
+.top_button {
+  position: absolute;
+  top: 0.5rem;
+  background-color: rgb(216, 214, 214);
+  width: 10rem;
+  height: 3rem;
+  z-index: 10000;
+  border-bottom: 2px solid black;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.left .top_button {
+  left: 0;
+  border-top-left-radius: 200px;
+}
+
+.handle.right .top_button {
+  right: 0;
+  border-top-right-radius: 200px;
+}
+
+.round_shape {
+  position: absolute;
+  background-color: var(--background-color);
+  width: calc(var(--shell-height) / 1.5);
+  height: calc(var(--shell-height) / 4);
+  border-radius: 100px;
+  bottom: calc(-1 * var(--shell-height) / 5);
+}
+
+.handle.right .round_shape {
+  transform: rotate(-10deg);
+  right: -2em;
+}
+
+.handle.left .round_shape {
+  transform: rotate(10deg);
+  left: -2rem;
 }

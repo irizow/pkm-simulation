@@ -1,6 +1,14 @@
+:root {
+  --background-color: rgb(11, 0, 16);
+  --shell-color: rgb(245, 192, 255);
+  --shell-height: 30rem;
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-height: 100vh;
+  background-color: var(--background-color);
+  overflow: hidden;
 }
