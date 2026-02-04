@@ -1,10 +1,11 @@
-import GameCanvas from "./components/GameCanvas";
-
+import Console from "./components/Console/Console";
+import GameCanvas from "./components/GameCanvas/GameCanvas";
+import styles from "./app.module.css";
 function App() {
   return (
-    <div style={{ display: "flex", justifyContent: "center", marginTop: 40 }}>
-      <GameCanvas />
-    </div>
+    <section className={styles.app}>
+      <Console children={<GameCanvas />} />
+    </section>
   );
 }
 

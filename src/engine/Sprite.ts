@@ -1,5 +1,4 @@
 // src/engine/Sprite.ts
-
 export interface SpriteConfig {
   x: number;
   y: number;
@@ -17,6 +16,9 @@ export class Sprite {
   speed: number;
   frameWidth: number;
   frameHeight: number;
+
+  width: number;
+  height: number;
 
   frameX: number;
   frameY: number;
@@ -38,6 +40,9 @@ export class Sprite {
     this.frameWidth = frameWidth;
     this.frameHeight = frameHeight;
 
+    this.width = frameWidth * 2;
+    this.height = frameHeight * 2;
+
     this.frameX = 1;
     this.frameY = 0;
     this.frameCount = 0;
@@ -48,13 +53,8 @@ export class Sprite {
     tileMap: number[][],
     tiles: { collides: boolean }[],
     tileSize: number,
-    worldObjects: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-      collides: boolean;
-    }[] = [],
+    worldObjects: any[],
+    onDoorEnter?: (target: string, spawn: { x: number; y: number }) => void,
   ) {
     let newX = this.x;
     let newY = this.y;
@@ -81,16 +81,10 @@ export class Sprite {
       moving = true;
     }
 
-    if (
-      !this.willCollide(newX, this.y, tileMap, tiles, tileSize, worldObjects)
-    ) {
+    if (!this.willCollide(newX, this.y, tileMap, tiles, tileSize, worldObjects))
       this.x = newX;
-    }
-    if (
-      !this.willCollide(this.x, newY, tileMap, tiles, tileSize, worldObjects)
-    ) {
+    if (!this.willCollide(this.x, newY, tileMap, tiles, tileSize, worldObjects))
       this.y = newY;
-    }
 
     if (moving) {
       this.frameCount++;
@@ -101,6 +95,23 @@ export class Sprite {
     } else {
       this.frameX = 1;
     }
+
+    // door detection
+    for (const obj of worldObjects) {
+      if (!obj.door) continue;
+
+      const d = obj.door;
+      const intersects =
+        this.x < d.x + d.width &&
+        this.x + this.width > d.x &&
+        this.y < d.y + d.height &&
+        this.y + this.height > d.y;
+
+      if (intersects && onDoorEnter) {
+        onDoorEnter(d.target, { x: d.spawnX, y: d.spawnY });
+        return;
+      }
+    }
   }
 
   willCollide(
@@ -109,36 +120,23 @@ export class Sprite {
     tileMap: number[][],
     tiles: { collides: boolean }[],
     tileSize: number,
-    worldObjects: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-      collides: boolean;
-    }[] = [],
+    worldObjects: any[] = [],
   ) {
     const tileX = Math.floor(newX / tileSize);
     const tileY = Math.floor(newY / tileSize);
 
-    const tileIndex = tileMap[tileY][tileX];
-    if (tiles[tileIndex].collides) return true;
+    if (tileMap[tileY] && tiles[tileMap[tileY][tileX]]?.collides) return true;
 
     for (const obj of worldObjects) {
       if (!obj.collides) continue;
 
-      const objLeft = obj.x;
-      const objRight = obj.x + obj.width;
-      const objTop = obj.y;
-      const objBottom = obj.y + obj.height;
-
       if (
-        newX < objRight &&
-        newX + this.frameWidth > objLeft &&
-        newY < objBottom &&
-        newY + this.frameHeight > objTop
-      ) {
+        newX < obj.x + obj.width &&
+        newX + this.width > obj.x &&
+        newY < obj.y + obj.height &&
+        newY + this.height > obj.y
+      )
         return true;
-      }
     }
 
     return false;

@@ -59,6 +59,7 @@ export const tiles = [
     src: "/tiles/tall-tree.png",
     collides: true,
   },
+  { name: "house-floor", src: "/tiles/house-floor.png", collides: false },
 ];
 
 // -------------------------------
@@ -72,7 +73,7 @@ export const tileImages: HTMLImageElement[] = tiles.map((t) => {
 
 //0: grass, 1: water, 2: water-left-edge, 3: water-right-edge, 4: water-bottom-edge,
 // 5: water-top-edge, 6: path, 7: path-left-edge, 8: path-right-edge, 9: path-bottom-edge,
-// 10: path-top-edge, 11: tall-tree
+// 10: path-top-edge, 11: tall-tree, 12: house-floor
 
 export const tileMapTown = [
   [0, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1],
@@ -91,4 +92,17 @@ export const tileMapTown = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+];
+
+export const tileMapMyHouse = [
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
+  [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
 ];
