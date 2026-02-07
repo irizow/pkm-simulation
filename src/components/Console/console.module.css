@@ -10,6 +10,8 @@
 .handle {
   width: calc(var(--shell-height) / 2);
   position: relative;
+  display: grid;
+  place-items: center;
 }
 
 .screen {
@@ -19,7 +21,7 @@
 .top_button {
   position: absolute;
   top: 0.5rem;
-  background-color: rgb(216, 214, 214);
+  background-color: var(--button-color);
   width: 10rem;
   height: 3rem;
   z-index: 10000;
@@ -55,4 +57,65 @@
 .handle.left .round_shape {
   transform: rotate(10deg);
   left: -2rem;
+}
+
+.controller {
+  position: relative;
+  height: calc(2 * var(--control-arrow-width));
+  width: calc(2 * var(--control-arrow-width));
+  margin-left: var(--control-arrow-width);
+}
+
+.controller .arrow {
+  position: absolute;
+  background-color: var(--button-color);
+  border: none;
+}
+
+.arrow.left,
+.arrow.right {
+  height: var(--control-arrow-height);
+  width: var(--control-arrow-width);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.arrow.down,
+.arrow.up {
+  width: var(--control-arrow-height);
+  height: var(--control-arrow-width);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow.left {
+  left: 0;
+}
+.arrow.up {
+  top: 0;
+  left: 50%;
+}
+
+.arrow.right {
+  right: 0;
+}
+
+.arrow.down {
+  bottom: 0;
+}
+
+.buttonbox {
+  display: flex;
+  gap: 2rem;
+  margin-right: var(--control-arrow-width);
+  transform: rotate(-20deg);
+  box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.427) inset;
+  padding: 1rem;
+  border-radius: 100px;
+  border: 1px solid gray;
+}
+.buttonbox > button {
+  background-color: var(--button-color);
+  border-radius: 100%;
+  height: var(--control-arrow-width);
+  width: var(--control-arrow-width);
+  border: none;
 }

@@ -1,7 +1,10 @@
 :root {
-  --background-color: rgb(11, 0, 16);
-  --shell-color: rgb(245, 192, 255);
+  --background-color: rgb(233, 227, 236);
+  --shell-color: rgb(202, 158, 237);
+  --button-color: rgb(20, 20, 20);
   --shell-height: 30rem;
+  --control-arrow-height: 2.5rem;
+  --control-arrow-width: 4rem;
 }
 
 body {
