@@ -1,16 +1,19 @@
 import type React from "react";
 import styles from "./console.module.css";
+import Controller from "../Controller/Controller";
+import type { InputHandler } from "../../engine/InputHandler";
 
-export default function Console({ children }: { children: React.ReactNode }) {
+export default function Console({
+  children,
+  input,
+}: {
+  children: React.ReactNode;
+  input: InputHandler;
+}) {
   return (
     <div className={styles.console}>
       <div className={`${styles.handle} ${styles.left}`}>
-        <div className={`${styles.controller}`}>
-          <button className={`${styles.arrow} ${styles.left}`}></button>
-          <button className={`${styles.arrow} ${styles.up}`}></button>
-          <button className={`${styles.arrow} ${styles.right}`}></button>
-          <button className={`${styles.arrow} ${styles.down}`}></button>
-        </div>
+        <Controller inputHandler={input} />
         <div className={`${styles.top_button}`}></div>
         <div className={styles.round_shape}></div>
       </div>

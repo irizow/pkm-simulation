@@ -24,4 +24,47 @@ export class InputHandler {
       if (e.key === "ArrowDown") this.down = false;
     });
   }
+
+  bindButtons(
+    leftBtn: HTMLElement,
+    rightBtn: HTMLElement,
+    upBtn: HTMLElement,
+    downBtn: HTMLElement,
+  ) {
+    const setupButton = (
+      btn: HTMLElement,
+      action: "left" | "right" | "up" | "down",
+    ) => {
+      btn.addEventListener("mousedown", () => {
+        this[action] = true;
+      });
+
+      btn.addEventListener("mouseup", () => {
+        this[action] = false;
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        this[action] = false;
+      });
+
+      btn.addEventListener(
+        "touchstart",
+        (e) => {
+          e.preventDefault();
+          this[action] = true;
+        },
+        { passive: false },
+      );
+
+      btn.addEventListener("touchend", (e) => {
+        e.preventDefault();
+        this[action] = false;
+      });
+    };
+
+    setupButton(leftBtn, "left");
+    setupButton(rightBtn, "right");
+    setupButton(upBtn, "up");
+    setupButton(downBtn, "down");
+  }
 }

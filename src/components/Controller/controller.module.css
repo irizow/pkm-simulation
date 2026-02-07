@@ -1,0 +1,42 @@
+.controller {
+  position: relative;
+  height: calc(2 * var(--control-arrow-width));
+  width: calc(2 * var(--control-arrow-width));
+  margin-left: var(--control-arrow-width);
+}
+
+.controller .arrow {
+  position: absolute;
+  background-color: var(--button-color);
+  border: none;
+}
+
+.arrow.left,
+.arrow.right {
+  height: var(--control-arrow-height);
+  width: var(--control-arrow-width);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.arrow.down,
+.arrow.up {
+  width: var(--control-arrow-height);
+  height: var(--control-arrow-width);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.arrow.left {
+  left: 0;
+}
+.arrow.up {
+  top: 0;
+  left: 50%;
+}
+
+.arrow.right {
+  right: 0;
+}
+
+.arrow.down {
+  bottom: 0;
+}

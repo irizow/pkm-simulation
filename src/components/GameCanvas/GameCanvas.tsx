@@ -16,7 +16,7 @@ const maps: { [key: string]: number[][] } = {
   myHouse: tileMapMyHouse,
 };
 
-export default function GameCanvas() {
+export default function GameCanvas({ input }: { input: InputHandler }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   let currentMapName = "outside";
 
@@ -29,7 +29,6 @@ export default function GameCanvas() {
 
     ctx.imageSmoothingEnabled = false;
 
-    const input = new InputHandler();
     const heroImage = new Image();
     heroImage.src = "/characters/hero.png";
 
