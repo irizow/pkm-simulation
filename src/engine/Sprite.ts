@@ -96,7 +96,6 @@ export class Sprite {
       this.frameX = 1;
     }
 
-    // door detection
     for (const obj of worldObjects) {
       if (!obj.door) continue;
 
@@ -108,7 +107,7 @@ export class Sprite {
         this.y + this.height > d.y;
 
       if (intersects && onDoorEnter) {
-        onDoorEnter(d.target, { x: d.spawnX, y: d.spawnY });
+        onDoorEnter(d.target, d.spawn);
         return;
       }
     }
