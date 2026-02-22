@@ -24,7 +24,9 @@ export default function Console({
           <button className={styles.a} {...createBind("interact", input)}>
             B
           </button>
-          <button className={styles.b}>A</button>
+          <button className={styles.b} {...createBind("interact", input)}>
+            A
+          </button>
         </div>
         <div className={`${styles.top_button}`}></div>
         <div className={styles.round_shape}></div>

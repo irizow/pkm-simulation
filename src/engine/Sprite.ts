@@ -56,6 +56,7 @@ export class Sprite {
     tileSize: number,
     worldObjects: any[],
     dialogueRef: RefObject<string | null>,
+    characters: Sprite[],
     onDoorEnter?: (target: string, spawn: { x: number; y: number }) => void,
   ) {
     if (dialogueRef.current) return;
@@ -84,9 +85,29 @@ export class Sprite {
       moving = true;
     }
 
-    if (!this.willCollide(newX, this.y, tileMap, tiles, tileSize, worldObjects))
+    if (
+      !this.willCollide(
+        newX,
+        this.y,
+        tileMap,
+        tiles,
+        tileSize,
+        worldObjects,
+        characters,
+      )
+    )
       this.x = newX;
-    if (!this.willCollide(this.x, newY, tileMap, tiles, tileSize, worldObjects))
+    if (
+      !this.willCollide(
+        this.x,
+        newY,
+        tileMap,
+        tiles,
+        tileSize,
+        worldObjects,
+        characters,
+      )
+    )
       this.y = newY;
 
     if (moving) {
@@ -123,6 +144,7 @@ export class Sprite {
     tiles: { collides: boolean }[],
     tileSize: number,
     worldObjects: any[] = [],
+    characters: Sprite[],
   ) {
     const tileX = Math.floor(newX / tileSize);
     const tileY = Math.floor(newY / tileSize);
@@ -139,6 +161,19 @@ export class Sprite {
         newY + this.height > obj.y
       )
         return true;
+    }
+
+    for (const char of characters) {
+      if (char === this) continue;
+
+      if (
+        newX < char.x + char.width &&
+        newX + this.width > char.x &&
+        newY < char.y + char.height &&
+        newY + this.height > char.y
+      ) {
+        return true;
+      }
     }
 
     return false;

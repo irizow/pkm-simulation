@@ -11,6 +11,7 @@ import { drawMap } from "../../utils/drawMap";
 import { allMapObjects } from "../../engine/objects";
 import { drawObjects } from "../../utils/drawObjects";
 import DialogueBox from "../DialogueBox/DialogueBox";
+import { NPC } from "../../engine/Npc";
 
 const maps: { [key: string]: number[][] } = {
   outside: tileMapTown,
@@ -23,6 +24,33 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
   const [dialogue, setDialogue] = useState<string | null>(null);
   const dialogueRef = useRef<string | null>(null);
   const interactionCooldownRef = useRef(false);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    canvas.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const keysToBlock = [
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+        " ",
+      ];
+
+      if (keysToBlock.includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+
+    canvas.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      canvas.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   useEffect(() => {
     dialogueRef.current = dialogue;
@@ -40,8 +68,23 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
     const heroImage = new Image();
     heroImage.src = "/pkm-simulation/characters/hero.png";
 
+    const dyanImage = new Image();
+    dyanImage.src = "/pkm-simulation/characters/dyan.png";
+
     heroImage.onload = () => {
       const hero = new Sprite({ x: 200, y: 200, image: heroImage });
+
+      const npcsByMap: { [key: string]: NPC[] } = {
+        outside: [],
+        myHouse: [
+          new NPC({
+            x: 200,
+            y: 200,
+            image: dyanImage,
+            dialogue: "If you go out can you get me soy milk?",
+          }),
+        ],
+      };
 
       function handleDoorEnter(
         target: string,
@@ -69,13 +112,17 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
               interactionCooldownRef.current = false;
             }, 1000);
           }
+          const currentNpcs = npcsByMap[currentMapName] || [];
 
           if (justPressed && !interactionCooldownRef.current) {
             if (dialogueRef.current) {
               setDialogue(null);
               lockInteraction();
             } else {
-              for (const obj of allMapObjects[currentMapName]) {
+              for (const obj of [
+                ...allMapObjects[currentMapName],
+                ...currentNpcs,
+              ]) {
                 if (!obj.dialogue) continue;
 
                 const near =
@@ -102,8 +149,23 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
             32,
             allMapObjects[currentMapName],
             dialogueRef,
+            currentNpcs,
             handleDoorEnter,
           );
+
+          for (const npc of currentNpcs) {
+            npc.updateNpc(
+              maps[currentMapName],
+              tiles,
+              32,
+              allMapObjects[currentMapName],
+              [hero],
+            );
+          }
+
+          for (const npc of currentNpcs) {
+            npc.draw(ctx, 2);
+          }
           hero.draw(ctx, 2);
 
           requestAnimationFrame(gameLoop);
@@ -121,6 +183,7 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
         width={500}
         height={500}
         style={{ border: "1px solid #000" }}
+        tabIndex={0}
       />
       {dialogue && (
         <DialogueBox dialogue={dialogue} setDialogue={setDialogue} />

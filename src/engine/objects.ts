@@ -47,6 +47,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       height: 24,
       image: null as unknown as HTMLImageElement,
       collides: true,
+      dialogue: "Ocata, a neighborhood in the town of El Masnou",
     },
     {
       name: "houseDoor",
@@ -74,7 +75,8 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       height: 32,
       image: null as unknown as HTMLImageElement,
       collides: true,
-      dialogue: "I'll have another look at the end of the month...",
+      dialogue:
+        "Ouch.. that was not a parking spot? ... I'll have another look at the end of the month",
     },
     {
       x: 3 * 32,
