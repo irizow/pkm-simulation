@@ -48,5 +48,6 @@
     left: var(--controller-margin);
     margin-left: 0;
     opacity: var(--controller-opacity);
+    z-index: 1000;
   }
 }
