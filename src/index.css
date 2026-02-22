@@ -3,6 +3,11 @@
   src: url(../public/fonts/SuperPixel.ttf);
 }
 
+@font-face {
+  font-family: "Unifont";
+  src: url(../public/fonts/gnu-unifont.otf);
+}
+
 :root {
   --background-color: rgb(233, 227, 236);
   --screen-size: 500px;

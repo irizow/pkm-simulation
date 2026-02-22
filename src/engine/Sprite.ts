@@ -1,4 +1,5 @@
-// src/engine/Sprite.ts
+import type { RefObject } from "react";
+
 export interface SpriteConfig {
   x: number;
   y: number;
@@ -54,8 +55,10 @@ export class Sprite {
     tiles: { collides: boolean }[],
     tileSize: number,
     worldObjects: any[],
+    dialogueRef: RefObject<string | null>,
     onDoorEnter?: (target: string, spawn: { x: number; y: number }) => void,
   ) {
+    if (dialogueRef.current) return;
     let newX = this.x;
     let newY = this.y;
     let moving = false;

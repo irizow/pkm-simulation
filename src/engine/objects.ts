@@ -8,6 +8,7 @@ export interface TownObjects {
   image: HTMLImageElement;
   collides: boolean;
   door?: Door;
+  dialogue?: string;
 }
 export interface Door {
   x: number;
@@ -73,6 +74,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       height: 32,
       image: null as unknown as HTMLImageElement,
       collides: true,
+      dialogue: "I'll have another look at the end of the month...",
     },
     {
       x: 3 * 32,
@@ -91,6 +93,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       height: 32,
       image: null as unknown as HTMLImageElement,
       collides: true,
+      dialogue: "So many good offers at Lidl this month!",
     },
   ],
   myHouse: [
@@ -155,6 +158,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       height: 86,
       image: null as unknown as HTMLImageElement,
       collides: true,
+      dialogue: "Looks like there is a train strike again...",
     },
   ],
 };

@@ -15,7 +15,9 @@
 }
 
 .screen {
-  padding: calc(var(--shell-height) / 10);
+  position: relative;
+  width: fit-content;
+  margin: 2rem;
 }
 
 .top_button {
@@ -70,6 +72,8 @@
   border: 1px solid gray;
 }
 .buttonbox > button {
+  color: rgb(206, 206, 206);
+  font-size: 1.4rem;
   background-color: var(--button-color);
   border-radius: 100%;
   height: var(--control-arrow-width);

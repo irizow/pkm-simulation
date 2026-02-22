@@ -1,43 +1,24 @@
 import styles from "./controller.module.css";
+import { createBind } from "./createBind";
 
 export default function Controller({ inputHandler }: { inputHandler: any }) {
-  const createBind = (direction: "left" | "right" | "up" | "down") => {
-    const handleDown = (e: React.SyntheticEvent) => {
-      if (e.type === "touchstart") e.preventDefault();
-      inputHandler[direction] = true;
-    };
-
-    const handleUp = (e: React.SyntheticEvent) => {
-      if (e.type === "touchend") e.preventDefault();
-      inputHandler[direction] = false;
-    };
-
-    return {
-      onMouseDown: handleDown,
-      onMouseUp: handleUp,
-      onMouseLeave: handleUp,
-      onTouchStart: handleDown,
-      onTouchEnd: handleUp,
-      style: { touchAction: "none" } as React.CSSProperties,
-    };
-  };
   return (
     <div className={`${styles.controller}`}>
       <button
         className={`${styles.arrow} ${styles.left}`}
-        {...createBind("left")}
+        {...createBind("left", inputHandler)}
       ></button>
       <button
         className={`${styles.arrow} ${styles.up}`}
-        {...createBind("up")}
+        {...createBind("up", inputHandler)}
       ></button>
       <button
         className={`${styles.arrow} ${styles.right}`}
-        {...createBind("right")}
+        {...createBind("right", inputHandler)}
       ></button>
       <button
         className={`${styles.arrow} ${styles.down}`}
-        {...createBind("down")}
+        {...createBind("down", inputHandler)}
       ></button>
     </div>
   );

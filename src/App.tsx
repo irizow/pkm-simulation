@@ -4,6 +4,7 @@ import styles from "./app.module.css";
 import { useRef, useState } from "react";
 import { InputHandler } from "./engine/InputHandler";
 import Intro from "./components/Intro/Intro";
+
 function App() {
   const inputRef = useRef(new InputHandler());
   const [isFocused, setIsFocused] = useState<boolean>(false);
