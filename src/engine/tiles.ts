@@ -1,65 +1,69 @@
 export const tiles = [
   {
     name: "grass",
-    src: "/tiles/grass.png",
+    src: "/pkm-simulation/tiles/grass.png",
     collides: false,
   },
   {
     name: "water",
-    src: "/tiles/water.png",
+    src: "/pkm-simulation/tiles/water.png",
     collides: true,
   },
   {
     name: "water-left-edge",
-    src: "/tiles/water-left-edge.png",
+    src: "/pkm-simulation/tiles/water-left-edge.png",
     collides: true,
   },
   {
     name: "water-right-edge",
-    src: "/tiles/water-right-edge.png",
+    src: "/pkm-simulation/tiles/water-right-edge.png",
     collides: true,
   },
   {
     name: "water-bottom-edge",
-    src: "/tiles/water-bottom-edge.png",
+    src: "/pkm-simulation/tiles/water-bottom-edge.png",
     collides: true,
   },
   {
     name: "water-top-edge",
-    src: "/tiles/water-top-edge.png",
+    src: "/pkm-simulation/tiles/water-top-edge.png",
     collides: true,
   },
   {
     name: "path",
-    src: "/tiles/path.png",
+    src: "/pkm-simulation/tiles/path.png",
     collides: false,
   },
   {
     name: "path-left-edge",
-    src: "/tiles/path-left-edge.png",
+    src: "/pkm-simulation/tiles/path-left-edge.png",
     collides: false,
   },
   {
     name: "path-right-edge",
-    src: "/tiles/path-right-edge.png",
+    src: "/pkm-simulation/tiles/path-right-edge.png",
     collides: false,
   },
   {
     name: "path-bottom-edge",
-    src: "/tiles/path-bottom-edge.png",
+    src: "/pkm-simulation/tiles/path-bottom-edge.png",
     collides: false,
   },
   {
     name: "path-top-edge",
-    src: "/tiles/path-top-edge.png",
+    src: "/pkm-simulation/tiles/path-top-edge.png",
     collides: false,
   },
   {
     name: "tall-tree",
-    src: "/tiles/tall-tree.png",
+    src: "/pkm-simulation/tiles/tall-tree.png",
     collides: true,
   },
-  { name: "house-floor", src: "/tiles/house-floor.png", collides: false },
+  {
+    name: "house-floor",
+    src: "/pkm-simulation/tiles/house-floor.png",
+    collides: false,
+  },
 ];
 
 // -------------------------------

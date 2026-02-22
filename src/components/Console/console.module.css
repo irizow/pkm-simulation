@@ -76,3 +76,36 @@
   width: var(--control-arrow-width);
   border: none;
 }
+
+@media screen and (max-width: 750px) {
+  .console {
+    background-color: transparent;
+    gap: 0;
+    border: none;
+  }
+  .handle {
+    width: 0;
+  }
+
+  .top_button {
+    display: none;
+  }
+  .round_shape {
+    display: none;
+  }
+
+  .buttonbox {
+    position: fixed;
+    bottom: var(--controller-bottom);
+    right: var(--controller-margin);
+    margin-right: 0;
+    opacity: var(--controller-opacity);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .screen {
+    padding: 0;
+    scale: 0.8;
+  }
+}

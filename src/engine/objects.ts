@@ -23,7 +23,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 14 * 32,
       y: 7 * 32,
-      src: "/tiles/tall-tree.png",
+      src: "/pkm-simulation/tiles/tall-tree.png",
       width: 42,
       height: 64,
       image: null as unknown as HTMLImageElement,
@@ -32,7 +32,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 23 * 16,
       y: 3 * 16,
-      src: "/tiles/tall-tree.png",
+      src: "/pkm-simulation/tiles/tall-tree.png",
       width: 32,
       height: 48,
       image: null as unknown as HTMLImageElement,
@@ -42,7 +42,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       name: "houseDoor",
       x: 9 * 32,
       y: 4 * 32,
-      src: "/tiles/my-purple-home.png",
+      src: "/pkm-simulation/tiles/my-purple-home.png",
       width: 164,
       height: 164,
       image: null as unknown as HTMLImageElement,
@@ -59,7 +59,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 8 * 32,
       y: 8 * 32,
-      src: "/tiles/mailbox-purple.png",
+      src: "/pkm-simulation/tiles/mailbox-purple.png",
       width: 32,
       height: 32,
       image: null as unknown as HTMLImageElement,
@@ -68,7 +68,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 3 * 32,
       y: 0 * 16,
-      src: "/tiles/house-blue-roof.png",
+      src: "/pkm-simulation/tiles/house-blue-roof.png",
       width: 148,
       height: 148,
       image: null as unknown as HTMLImageElement,
@@ -77,7 +77,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 6 * 32,
       y: 4 * 32,
-      src: "/tiles/mailbox-red.png",
+      src: "/pkm-simulation/tiles/mailbox-red.png",
       width: 32,
       height: 32,
       image: null as unknown as HTMLImageElement,
@@ -88,7 +88,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 13 * 16,
       y: 27 * 16,
-      src: "/tiles/plant.png",
+      src: "/pkm-simulation/tiles/plant.png",
       width: 24,
       height: 56,
       image: null as unknown as HTMLImageElement,
@@ -97,7 +97,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 19 * 16,
       y: 27 * 16,
-      src: "/tiles/plant.png",
+      src: "/pkm-simulation/tiles/plant.png",
       width: 24,
       height: 56,
       image: null as unknown as HTMLImageElement,
@@ -106,7 +106,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 15 * 16,
       y: 29 * 16,
-      src: "/tiles/entrance-carpet.png",
+      src: "/pkm-simulation/tiles/entrance-carpet.png",
       width: 48,
       height: 24,
       image: null as unknown as HTMLImageElement,
@@ -123,7 +123,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 2 * 16,
       y: 7 * 16,
-      src: "/tiles/rug.png",
+      src: "/pkm-simulation/tiles/rug.png",
       width: 128,
       height: 64,
       image: null as unknown as HTMLImageElement,
@@ -132,7 +132,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 2 * 16,
       y: 10 * 16,
-      src: "/tiles/sofa.png",
+      src: "/pkm-simulation/tiles/sofa.png",
       width: 128,
       height: 64,
       image: null as unknown as HTMLImageElement,
@@ -141,7 +141,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       x: 3 * 16,
       y: 0 * 16,
-      src: "/tiles/tv.png",
+      src: "/pkm-simulation/tiles/tv.png",
       width: 110,
       height: 86,
       image: null as unknown as HTMLImageElement,

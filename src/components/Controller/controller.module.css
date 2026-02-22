@@ -40,3 +40,13 @@
 .arrow.down {
   bottom: 0;
 }
+
+@media screen and (max-width: 750px) {
+  .controller {
+    position: fixed;
+    bottom: var(--controller-bottom);
+    left: var(--controller-margin);
+    margin-left: 0;
+    opacity: var(--controller-opacity);
+  }
+}

@@ -5,13 +5,20 @@
   --shell-height: 30rem;
   --control-arrow-height: 2.5rem;
   --control-arrow-width: 4rem;
+  --controller-bottom: 10vh;
+  --controller-margin: 3vw;
+  --controller-opacity: 0.8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
-  min-height: 100vh;
+  max-height: 100vh;
   background-color: var(--background-color);
-  overflow: hidden;
 }

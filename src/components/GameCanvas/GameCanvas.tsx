@@ -30,7 +30,7 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
     ctx.imageSmoothingEnabled = false;
 
     const heroImage = new Image();
-    heroImage.src = "/characters/hero.png";
+    heroImage.src = "/pkm-simulation/characters/hero.png";
 
     heroImage.onload = () => {
       const hero = new Sprite({ x: 200, y: 200, image: heroImage });
@@ -45,22 +45,24 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
       }
 
       function gameLoop() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (canvas && ctx) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        drawMap(ctx, maps[currentMapName], tileImages, 32);
-        drawObjects(ctx, allMapObjects[currentMapName]);
+          drawMap(ctx, maps[currentMapName], tileImages, 32);
+          drawObjects(ctx, allMapObjects[currentMapName]);
 
-        hero.update(
-          input,
-          maps[currentMapName],
-          tiles,
-          32,
-          allMapObjects[currentMapName],
-          handleDoorEnter,
-        );
-        hero.draw(ctx, 2);
+          hero.update(
+            input,
+            maps[currentMapName],
+            tiles,
+            32,
+            allMapObjects[currentMapName],
+            handleDoorEnter,
+          );
+          hero.draw(ctx, 2);
 
-        requestAnimationFrame(gameLoop);
+          requestAnimationFrame(gameLoop);
+        }
       }
 
       gameLoop();

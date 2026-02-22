@@ -3,9 +3,7 @@ import styles from "./controller.module.css";
 export default function Controller({ inputHandler }: { inputHandler: any }) {
   const createBind = (direction: "left" | "right" | "up" | "down") => {
     const handleDown = (e: React.SyntheticEvent) => {
-      // Stop mobile scrolling/zooming
       if (e.type === "touchstart") e.preventDefault();
-      // DIRECTLY modify the engine's instance
       inputHandler[direction] = true;
     };
 
@@ -17,7 +15,7 @@ export default function Controller({ inputHandler }: { inputHandler: any }) {
     return {
       onMouseDown: handleDown,
       onMouseUp: handleUp,
-      onMouseLeave: handleUp, // Safety if they drag off the button
+      onMouseLeave: handleUp,
       onTouchStart: handleDown,
       onTouchEnd: handleUp,
       style: { touchAction: "none" } as React.CSSProperties,

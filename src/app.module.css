@@ -1,5 +1,15 @@
 .app {
   width: 100vw;
-  display: grid;
-  place-items: center;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 750px) {
+  .app {
+    align-items: flex-start;
+  }
 }
