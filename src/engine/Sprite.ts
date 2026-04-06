@@ -179,15 +179,20 @@ export class Sprite {
     return false;
   }
 
-  draw(ctx: CanvasRenderingContext2D, scale: number = 1) {
+  draw(
+    ctx: CanvasRenderingContext2D,
+    scale: number = 1,
+    cameraOffsetX: number = 0,
+    cameraOffsetY: number = 0,
+  ) {
     ctx.drawImage(
       this.image,
       this.frameX * this.frameWidth,
       this.frameY * this.frameHeight,
       this.frameWidth,
       this.frameHeight,
-      this.x,
-      this.y,
+      this.x - cameraOffsetX,
+      this.y - cameraOffsetY,
       this.frameWidth * scale,
       this.frameHeight * scale,
     );

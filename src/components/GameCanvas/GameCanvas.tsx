@@ -99,8 +99,43 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
         if (canvas && ctx) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          drawMap(ctx, maps[currentMapName], tileImages, 32);
-          drawObjects(ctx, allMapObjects[currentMapName]);
+          // Calculate camera position - center on hero for outdoor maps only
+          let cameraOffsetX = 0;
+          let cameraOffsetY = 0;
+
+          if (currentMapName === "outside") {
+            const mapWidth = maps[currentMapName][0].length * 32;
+            const mapHeight = maps[currentMapName].length * 32;
+
+            // Center camera on hero
+            cameraOffsetX = hero.x + hero.width / 2 - canvas.width / 2;
+            cameraOffsetY = hero.y + hero.height / 2 - canvas.height / 2;
+
+            // Clamp camera to map bounds
+            cameraOffsetX = Math.max(
+              0,
+              Math.min(cameraOffsetX, mapWidth - canvas.width),
+            );
+            cameraOffsetY = Math.max(
+              0,
+              Math.min(cameraOffsetY, mapHeight - canvas.height),
+            );
+          }
+
+          drawMap(
+            ctx,
+            maps[currentMapName],
+            tileImages,
+            32,
+            cameraOffsetX,
+            cameraOffsetY,
+          );
+          drawObjects(
+            ctx,
+            allMapObjects[currentMapName],
+            cameraOffsetX,
+            cameraOffsetY,
+          );
 
           let prevInteract = false;
 
@@ -164,9 +199,9 @@ export default function GameCanvas({ input }: { input: InputHandler }) {
           }
 
           for (const npc of currentNpcs) {
-            npc.draw(ctx, 2);
+            npc.draw(ctx, 2, cameraOffsetX, cameraOffsetY);
           }
-          hero.draw(ctx, 2);
+          hero.draw(ctx, 2, cameraOffsetX, cameraOffsetY);
 
           requestAnimationFrame(gameLoop);
         }
