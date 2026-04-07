@@ -7,21 +7,39 @@ export class NPC extends Sprite {
   movingTiles: number = 0; // how m tiles left to move
   pixelsMoved: number = 0; // how many px moved in current tile
   tileSize: number = 16;
-  dialogue: string = "";
+  dialogue: string[] = [];
+  currentDialogueIndex: number = 0;
+  isLazy: boolean;
 
   constructor(config: {
     x: number;
     y: number;
     image: HTMLImageElement;
-    dialogue: string;
+    dialogue: string[];
+    isLazy: boolean;
+    speed?: number;
   }) {
-    super({ ...config, speed: 1 });
+    super({ ...config, speed: config.speed ?? 1 });
     this.dialogue = config.dialogue;
+    this.currentDialogueIndex = Math.floor(
+      Math.random() * config.dialogue.length,
+    );
+    this.isLazy = config.isLazy;
+  }
+
+  getDialogue() {
+    if (this.dialogue.length === 0) return "";
+
+    const dialogueLine = this.dialogue[this.currentDialogueIndex];
+    this.currentDialogueIndex =
+      (this.currentDialogueIndex + 1) % this.dialogue.length;
+    return dialogueLine;
   }
 
   chooseNewDirection() {
     const directions = ["left", "right", "up", "down", "idle"];
-    const weights = [1, 1, 1, 1, 3];
+    const idlenessWeight = this.isLazy ? 2 : 3;
+    const weights = [1, 1, 1, 1, idlenessWeight];
 
     let total = weights.reduce((a, b) => a + b, 0);
     let rand = Math.random() * total;

@@ -57,7 +57,11 @@ export class Sprite {
     worldObjects: any[],
     dialogueRef: RefObject<string | null>,
     characters: Sprite[],
-    onDoorEnter?: (target: string, spawn: { x: number; y: number }) => void,
+    onDoorEnter?: (
+      target: string,
+      spawn: { x: number; y: number },
+      direction: "left" | "right" | "up" | "down" | null,
+    ) => void,
   ) {
     if (dialogueRef.current) return;
     let newX = this.x;
@@ -84,6 +88,16 @@ export class Sprite {
       this.frameY = 0;
       moving = true;
     }
+
+    const moveDirection = input.up
+      ? "up"
+      : input.down
+        ? "down"
+        : input.left
+          ? "left"
+          : input.right
+            ? "right"
+            : null;
 
     if (
       !this.willCollide(
@@ -130,8 +144,11 @@ export class Sprite {
         this.y < d.y + d.height &&
         this.y + this.height > d.y;
 
-      if (intersects && onDoorEnter) {
-        onDoorEnter(d.target, d.spawn);
+      const directionMatches =
+        !d.requiredDirection || d.requiredDirection === moveDirection;
+
+      if (intersects && directionMatches && onDoorEnter) {
+        onDoorEnter(d.target, d.spawn, moveDirection);
         return;
       }
     }

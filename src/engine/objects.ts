@@ -1,3 +1,12 @@
+import { tileMapMyHouse, tileMapTown } from "./tiles";
+
+const boundaries = {
+  townY: tileMapTown.length,
+  townX: tileMapTown[0].length,
+  houseY: tileMapMyHouse.length,
+  houseX: tileMapMyHouse[0].length,
+};
+
 export interface TownObjects {
   name?: string;
   x: number;
@@ -17,7 +26,16 @@ export interface Door {
   height: number;
   target: string;
   spawn?: { x: number; y: number };
+  requiredDirection?: "left" | "right" | "up" | "down";
 }
+
+// Door spawn locations - when exiting to this location, hero spawns here
+const doorSpawns = {
+  // Exiting outside from house
+  exitHouseToOutside: { x: 19 * 16 + 8, y: 28 * 16 },
+  // Exiting house from outside - spawn inside the house (below the plants)
+  exitOutsideToHouse: { x: 16 * 16, y: 26 * 16 },
+};
 
 export const allMapObjects: Record<string, TownObjects[]> = {
   outside: [
@@ -52,7 +70,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
     {
       name: "houseDoor",
       x: 18 * 16,
-      y: 7 * 16,
+      y: (boundaries.townY - 6) * 16,
       src: "/pkm-simulation/tiles/my-purple-home.png",
       width: 164,
       height: 164,
@@ -60,11 +78,12 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       collides: true,
       door: {
         x: 20 * 16,
-        y: 17 * 16,
+        y: (boundaries.townY - 6) * 16 + 164,
         width: 16,
         height: 16,
         target: "myHouse",
-        spawn: { x: 15 * 16, y: 27 * 16 },
+        requiredDirection: "up",
+        spawn: doorSpawns.exitOutsideToHouse,
       },
     },
     {
@@ -100,7 +119,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
   ],
   myHouse: [
     {
-      x: 13 * 16,
+      x: 10 * 16,
       y: 27 * 16,
       src: "/pkm-simulation/tiles/plant.png",
       width: 24,
@@ -109,7 +128,7 @@ export const allMapObjects: Record<string, TownObjects[]> = {
       collides: true,
     },
     {
-      x: 19 * 16,
+      x: 22 * 16,
       y: 27 * 16,
       src: "/pkm-simulation/tiles/plant.png",
       width: 24,
@@ -131,7 +150,8 @@ export const allMapObjects: Record<string, TownObjects[]> = {
         width: 16,
         height: 16,
         target: "outside",
-        spawn: { x: 19 * 16 + 16, y: 18 * 16 + 16 },
+        requiredDirection: "down",
+        spawn: doorSpawns.exitHouseToOutside,
       },
     },
     {
